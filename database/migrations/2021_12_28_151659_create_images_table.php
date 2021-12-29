@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreateImagesTable extends Migration
 {
@@ -21,7 +22,7 @@ class CreateImagesTable extends Migration
                   ->references('id')
                   ->on('products')
                   ->onDelete('cascade');
-            $table->timestamps();
+            $table->timestamps()->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }
 

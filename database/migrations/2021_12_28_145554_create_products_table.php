@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class CreateProductsTable extends Migration
 {
@@ -25,9 +26,9 @@ class CreateProductsTable extends Migration
                     ->references('id')
                     ->on('categories')
                     ->onDelete('cascade');
-            $table->integer('is_top');
-            $table->integer('on_sale');
-            $table->timestamps();
+            $table->integer('is_top')->default(0);
+            $table->integer('on_sale')->default(0);
+            $table->timestamps()->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }
 
