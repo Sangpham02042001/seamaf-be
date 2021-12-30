@@ -10,6 +10,21 @@ class ProductController extends Controller
 {
     
     public function getProductsByCategory($categoryId) {
-        return Product::with('images')->where('category_id', '=', $categoryId)->get();
+        return Product::with('images')->where('category_id', '=', $categoryId)->take(10)->get();
+    }
+
+    public function searchProducts(Request $request) {
+        $text = $request->query('text');
+        return Product::with('images')
+            ->where('name', 'like', '%'.$text.'%')
+            ->orWhere('code', 'like', '%'.$text.'%')
+            ->take(10)
+            ->get();
+    }
+
+    public function getProductById($productId) {
+        return Product::with('images')
+            ->where('id', '=', $productId)
+            ->get();
     }
 }

@@ -23,3 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/categories', [CategoryController::class, 'index']);
 
 Route::get('/category/{categoryId}', [ProductController::class, 'getProductsByCategory']);
+
+Route::get('/products/search', [ProductController::class, 'searchProducts']);
+
+Route::get('/products/{productId}', [ProductController::class, 'getProductById']);
