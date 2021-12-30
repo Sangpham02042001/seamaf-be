@@ -27,4 +27,19 @@ class ProductController extends Controller
             ->where('id', '=', $productId)
             ->get();
     }
+
+    public function getTopProducts() {
+        return Product::with('images')
+            ->where('is_top', '=', 1)
+            ->orderBy('created_at', 'DESC')
+            ->take(10)
+            ->get();
+    }
+
+    public function getLatestProducts() {
+        return Product::with('images')
+            ->orderBy('created_at', 'DESC')
+            ->take(10)
+            ->get();
+    }
 }

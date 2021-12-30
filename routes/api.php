@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,10 +21,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('/signup', [UserController::class, 'register']);
+
 Route::get('/categories', [CategoryController::class, 'index']);
 
 Route::get('/category/{categoryId}', [ProductController::class, 'getProductsByCategory']);
 
 Route::get('/products/search', [ProductController::class, 'searchProducts']);
+
+Route::get('/products/top', [ProductController::class, 'getTopProducts']);
+
+Route::get('/products/latest', [ProductController::class, 'getLatestProducts']);
 
 Route::get('/products/{productId}', [ProductController::class, 'getProductById']);
