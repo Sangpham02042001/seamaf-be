@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
+use Laravel\Passport\Http\Controllers\AccessTokenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +23,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/signup', [UserController::class, 'register']);
+Route::group(['middleware' => ['auth:api', 'is-admin']], function() {
+    Route::get('/products', [ProductController::class, 'index']);
+
+    // Route::get('/info', [])
+});
+
+Route::post('login', [AccessTokenController::class, 'issueToken'])->middleware(['api-login', 'throttle']);
+
+Route::post('/signup', [AuthController::class, 'register']);
 
 Route::get('/categories', [CategoryController::class, 'index']);
 

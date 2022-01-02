@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
+    public function index(Request $request) {
+        return Product::with('images')->get();
+        // return $request->user();
+    }
     
     public function getProductsByCategory($categoryId) {
         return Product::with('images')->where('category_id', '=', $categoryId)->take(10)->get();

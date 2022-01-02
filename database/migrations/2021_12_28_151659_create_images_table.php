@@ -22,7 +22,7 @@ class CreateImagesTable extends Migration
                   ->references('id')
                   ->on('products')
                   ->onDelete('cascade');
-            $table->timestamps()->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps();
         });
     }
 

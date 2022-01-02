@@ -28,7 +28,7 @@ class CreateProductsTable extends Migration
                     ->onDelete('cascade');
             $table->integer('is_top')->default(0);
             $table->integer('on_sale')->default(0);
-            $table->timestamps()->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps();
         });
     }
 
