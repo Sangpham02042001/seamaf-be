@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class ProductController extends Controller
 {
     public function index(Request $request) {
-        return Product::with('images')->get();
+        return Product::with(['images', 'category'])->get();
         // return $request->user();
     }
     

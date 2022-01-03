@@ -27,6 +27,12 @@ Route::middleware('auth:api')->get('/user-info', [AuthController::class, 'index'
 
 Route::group(['middleware' => ['auth:api', 'is-admin']], function() {
     Route::get('/products', [ProductController::class, 'index']);
+    
+    Route::get('/users', [UserController::class, 'index']);
+
+    Route::delete('/user/{userId}', [UserController::class, 'delete']);
+
+    Route::put('/user/{userId}', [UserController::class, 'update']);
 
     // Route::get('/info', [])
 });

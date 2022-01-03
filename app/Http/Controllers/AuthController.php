@@ -21,7 +21,8 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'name'=> 'required',
             'email'=> 'required|email|unique:users',
-            'password'=> 'required|min:6'
+            'password'=> 'required|min:6',
+            'role' => 'string'
         ], [
             'email.unique'=> 'Email has already used!',
             'password.min' => 'Password must has at least 6 characters!'
@@ -38,7 +39,7 @@ class AuthController extends Controller
             'updated_at'=>Carbon::now('Asia/Ho_Chi_Minh'),
         ];
         $user = User::create($postArray);
-        return response()->json(['message'=> 'Signup successfully'], 201);
+        return response()->json(['user' => $user], 201);
     }
 
 }
