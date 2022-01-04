@@ -46,6 +46,7 @@ Route::group(['middleware' => ['auth:api', 'is-admin']], function() {
 
     Route::delete('/categories/{categoryId}', [CategoryController::class, 'delete']);
 
+    // Route::get('/info', [])
 });
 
 Route::post('login', [AccessTokenController::class, 'issueToken'])->middleware(['api-login', 'throttle']);
