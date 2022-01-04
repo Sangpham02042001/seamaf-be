@@ -34,6 +34,18 @@ Route::group(['middleware' => ['auth:api', 'is-admin']], function() {
 
     Route::put('/user/{userId}', [UserController::class, 'update']);
 
+    Route::post('/products', [ProductController::class, 'create']);
+
+    Route::delete('/products/{productId}', [ProductController::class, 'delete']);
+
+    Route::put('/products/{productId}', [ProductController::class, 'update']);
+
+    Route::post('/categories', [CategoryController::class, 'create']);
+
+    Route::put('/categories/{categoryId}', [CategoryController::class, 'update']);
+
+    Route::delete('/categories/{categoryId}', [CategoryController::class, 'delete']);
+
     // Route::get('/info', [])
 });
 

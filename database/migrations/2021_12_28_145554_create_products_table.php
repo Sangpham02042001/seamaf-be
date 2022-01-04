@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('code')->default(Str::uuid());
             $table->string('name', 200);
-            $table->string('description', 100);
+            $table->string('description', 100)->default('');
             $table->integer('price');
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')
